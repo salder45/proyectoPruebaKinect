@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerController.cs">
+    <Files>
+      <File FileName="../OpenNI/Samples/UserTracker.net/MainWindow.cs" Line="349" Column="65" />
+      <File FileName="../tinkerer/UnityWrapper/Assets/Nite3.cs" Line="57" Column="20" />
+      <File FileName="../tinkerer/UnityWrapper/Nite2.cs" Line="256" Column="17" />
+      <File FileName="../tinkerer/UnityWrapper/Assets/Nite.cs" Line="292" Column="36" />
+      <File FileName="Assets/PlayerController.cs" Line="76" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
