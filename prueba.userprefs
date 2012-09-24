@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../tinkerer/UnityWrapper/Nite2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerController.cs">
     <Files>
-      <File FileName="../OpenNI/Samples/UserTracker.net/MainWindow.cs" Line="349" Column="65" />
+      <File FileName="../OpenNI/Samples/UserTracker.net/MainWindow.cs" Line="59" Column="97" />
       <File FileName="../tinkerer/UnityWrapper/Assets/Nite3.cs" Line="57" Column="20" />
-      <File FileName="../tinkerer/UnityWrapper/Nite2.cs" Line="256" Column="17" />
-      <File FileName="../tinkerer/UnityWrapper/Assets/Nite.cs" Line="292" Column="36" />
+      <File FileName="../tinkerer/UnityWrapper/Nite2.cs" Line="301" Column="95" />
+      <File FileName="Assets/PlayerController.cs" Line="120" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
