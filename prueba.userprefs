@@ -5,7 +5,10 @@
       <File FileName="../OpenNI/Samples/UserTracker.net/MainWindow.cs" Line="59" Column="97" />
       <File FileName="../tinkerer/UnityWrapper/Assets/Nite3.cs" Line="57" Column="20" />
       <File FileName="../tinkerer/UnityWrapper/Nite2.cs" Line="301" Column="95" />
-      <File FileName="Assets/PlayerController.cs" Line="120" Column="2" />
+      <File FileName="Assets/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="../tinkerer/UnityWrapper/Assets/handgen.cs" Line="72" Column="24" />
+      <File FileName="../tinkerer/UnityWrapper/Assets/Nite.cs" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Scripts/Camera Scripts/MouseOrbit.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

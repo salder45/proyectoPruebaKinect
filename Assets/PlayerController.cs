@@ -23,10 +23,18 @@ public class PlayerController : MonoBehaviour {
 	private PoseDetectionCapability poseDetectionCapability;
 	private string calibPose;
 	Quaternion rotationInitial;
-	
+	//NITE-HAND
+	private HandsGenerator hands;
+	private GestureGenerator gestures;
+	//NITE-HAND
 	
 	private Dictionary <int, Dictionary<SkeletonJoint,SkeletonJointPosition>> joints;
 	private bool shouldRun;
+	
+	
+	//aaron
+	public float valorPositivoRotacion;
+	public float valorNegativoRotacion;
 	//Para inicar
 	void Start () {
 		Debug.Log("Start");
@@ -37,23 +45,24 @@ public class PlayerController : MonoBehaviour {
 			throw new Exception("Nodo de Profundidad no encontrado");
 		}
 		
-		this.userGenerator=new UserGenerator(this.context);
-		this.skeletonCapability=this.userGenerator.SkeletonCapability;
-		this.poseDetectionCapability=this.userGenerator.PoseDetectionCapability;
-		this.calibPose=this.skeletonCapability.CalibrationPose;
-		//Agregas los handlers
-		this.userGenerator.NewUser+=userGenerator_NewUser;
-		this.userGenerator.LostUser+=userGenerator_LostUser;
-		this.poseDetectionCapability.PoseDetected+=poseDetectionCapability_PoseDetected;
-		this.skeletonCapability.CalibrationComplete+=skeletonCapability_CalibrationComplete;
-		//Activar los joints depende del profile
-		//http://openni.org/docs2/Reference/_xn_types_8h_a294999eabe6eeab319a61d3d0093b174.html#a294999eabe6eeab319a61d3d0093b174
-		this.skeletonCapability.SetSkeletonProfile(SkeletonProfile.All);
-		this.joints=new Dictionary<int,Dictionary<SkeletonJoint,SkeletonJointPosition>>();
+		this.hands = context.FindExistingNode (NodeType.Hands) as HandsGenerator;
+		if (this.hands == null) {
+			Debug.LogError ("Viewer must have a hands node!");
+		}
+		this.gestures = context.FindExistingNode (NodeType.Gesture) as GestureGenerator;
+		if (this.gestures == null) {
+			Debug.LogError ("Viewer must have a gestures node!");
+		}
+		
+		
+		IniciaUser();
+		IniciaHand();
+		
 		//Generar
 		this.userGenerator.StartGenerating();
 		this.shouldRun=true;
-	}	       
+	}
+	
 	
 	void userGenerator_NewUser(object sender, NewUserEventArgs e){
           if (this.skeletonCapability.DoesNeedPoseForCalibration){
@@ -111,7 +120,14 @@ public class PlayerController : MonoBehaviour {
 					Debug.Log("Z2= "+ori.Z2);
 					Debug.Log("Z3= "+ori.Z3);
 					*/
-					transform.rotation=SkeletonJointOrientationToQuaternion(ori);
+					Quaternion q=SkeletonJointOrientationToQuaternion(ori);
+					Debug.Log(q.y);
+					if(q.y>.30){
+						transform.Rotate(new Vector3(0f,valorPositivoRotacion,0f));
+					}else if(q.y<-.30){
+						transform.Rotate(new Vector3(0f,-valorNegativoRotacion,0f));
+					}
+					//transform.rotation=q;
 					
 				}
 			}
@@ -164,6 +180,28 @@ public class PlayerController : MonoBehaviour {
 		return new Quaternion(qx, qy, qz, qw);
 
     }
+	
+	void IniciaUser(){
+		this.userGenerator=new UserGenerator(this.context);
+		this.skeletonCapability=this.userGenerator.SkeletonCapability;
+		this.poseDetectionCapability=this.userGenerator.PoseDetectionCapability;
+		this.calibPose=this.skeletonCapability.CalibrationPose;
+		//Agregas los handlers
+		this.userGenerator.NewUser+=userGenerator_NewUser;
+		this.userGenerator.LostUser+=userGenerator_LostUser;
+		this.poseDetectionCapability.PoseDetected+=poseDetectionCapability_PoseDetected;
+		this.skeletonCapability.CalibrationComplete+=skeletonCapability_CalibrationComplete;
+		//Activar los joints depende del profile
+		//http://openni.org/docs2/Reference/_xn_types_8h_a294999eabe6eeab319a61d3d0093b174.html#a294999eabe6eeab319a61d3d0093b174
+		this.skeletonCapability.SetSkeletonProfile(SkeletonProfile.All);
+		this.joints=new Dictionary<int,Dictionary<SkeletonJoint,SkeletonJointPosition>>();
+		
+	}
+	
+	void IniciaHand(){
+		
+		
+	}
 	
 	
 }
