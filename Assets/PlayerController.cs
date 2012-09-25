@@ -118,20 +118,11 @@ public class PlayerController : MonoBehaviour {
 			int[] users=this.userGenerator.GetUsers();
 			foreach(int user in users){
 				if(this.skeletonCapability.IsTracking(user)){
+					
 					//Debug.Log ("Esta trackeando Usuario # "+user);
 					//obtener la orientacion del joint
 					SkeletonJointOrientation ori=this.skeletonCapability.GetSkeletonJointOrientation(user,SkeletonJoint.Torso);
-					/*
-					Debug.Log("X1= "+ori.X1);
-					Debug.Log("X2= "+ori.X2);
-					Debug.Log("X3= "+ori.X3);
-					Debug.Log("Y1= "+ori.Y1);
-					Debug.Log("Y2= "+ori.Y2);
-					Debug.Log("Y3= "+ori.Y3);
-					Debug.Log("Z1= "+ori.Z1);
-					Debug.Log("Z2= "+ori.Z2);
-					Debug.Log("Z3= "+ori.Z3);
-					*/
+					
 					Quaternion q=SkeletonJointOrientationToQuaternion(ori);
 					//Debug.Log(q.y);
 					if(q.y>.30){
@@ -140,25 +131,25 @@ public class PlayerController : MonoBehaviour {
 						transform.Rotate(new Vector3(0f,-valorNegativoRotacion,0f));
 					}
 					
-					
-					
 					if(q.x>.20){
-							if(transform.rotation.x<.25){
-								transform.Rotate(new Vector3(valorPositivoRotacion,0f,0f));
+							if(GameObject.Find("CuboCamara").transform.rotation.x<.25){
+								GameObject.Find("CuboCamara").transform.Rotate(new Vector3(valorPositivoRotacion,0f,0f));
 							}
 					}else if(q.x<-.20){
-							if(transform.rotation.x>-.25){
-								transform.Rotate(new Vector3(-valorNegativoRotacion,0f,0f));
+							if(GameObject.Find("CuboCamara").transform.rotation.x>-.25){
+								GameObject.Find("CuboCamara").transform.Rotate(new Vector3(-valorNegativoRotacion,0f,0f));
 							}
 					}else{
-						Quaternion fromX =new Quaternion(transform.rotation.x,transform.rotation.y,0f,transform.rotation.w);
-						Quaternion toX =new Quaternion(0f,transform.rotation.y,0f,transform.rotation.w);
+						Quaternion fromX =new Quaternion(GameObject.Find("CuboCamara").transform.rotation.x,0f,0f,GameObject.Find("CuboCamara").transform.rotation.w);
+						Quaternion toX =new Quaternion(0f,GameObject.Find("CuboCamara").transform.rotation.y,0f,transform.rotation.w);
 						
 						
-						transform.rotation = Quaternion.Lerp(fromX, toX, Time.time * .001f);
-						//transform.Rotate (new Vector3((transform.rotation.x *-1),0f,0f));				
+						//GameObject.Find("CuboCamara").transform.Rotate(Quaternion.Lerp(fromX, toX, Time.time * .001f));
+						//GameObject.Find("CuboCamara").transform.Rotate(Vector3((GameObject.Find("CuboCamara").rotation.x *-1)*2,0f,0f));				
 					}
+					
 					//transform.rotation=q;
+					
 					//Traslacion
 					SkeletonJointPosition posicion=this.skeletonCapability.GetSkeletonJointPosition(user,SkeletonJoint.Torso);
 					if(posicion.Position.Z<1170F){
