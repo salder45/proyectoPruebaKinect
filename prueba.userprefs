@@ -7,8 +7,7 @@
       <File FileName="../tinkerer/UnityWrapper/Nite2.cs" Line="301" Column="95" />
       <File FileName="../tinkerer/UnityWrapper/Assets/handgen.cs" Line="72" Column="24" />
       <File FileName="../tinkerer/UnityWrapper/Assets/Nite.cs" Line="1" Column="1" />
-      <File FileName="Assets/PlayerController.cs" Line="153" Column="8" />
-      <File FileName="Assets/Standard Assets/Scripts/Camera Scripts/MouseOrbit.js" Line="1" Column="1" />
+      <File FileName="Assets/PlayerController.cs" Line="214" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour {
 						transform.Translate(Vector3.forward * 0.107832f*5 *Time.deltaTime);
 					}else if(posicion.Position.Z>1470F){
 						//transform.Translate(Vector3.back*10f*Time.deltaTime);
+						transform.Translate(Vector3.back * 0.107832f*5 *Time.deltaTime);
 					}
 					
 					
