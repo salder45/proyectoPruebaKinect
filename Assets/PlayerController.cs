@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private SkeletonCapability skeletonCapability;
 	private PoseDetectionCapability poseDetectionCapability;
 	private string calibPose;
-	Quaternion rotationInitial;
-		
+			
 	private Dictionary <int, Dictionary<SkeletonJoint,SkeletonJointPosition>> joints;
 	private bool shouldRun;
 	
@@ -34,13 +33,13 @@ public class PlayerController : MonoBehaviour {
 	public float zInicial=1320;
 	public float xInicial=100;
 	public float yInicial=-30;
-	//Para inicar
+	//Hand Tracking
+	private HandsGenerator hands;
+	private GestureGenerator gesture;
+	private Dictionary<int,List<Point3D>> tracking;
+	private int trackingSize = 10;
 	
-	//----
-	public float xAnterior=0;
-	public float yAnterior=0;
-	public float zAnterior=0;
-	//----
+	//Para inicar
 	
 	void Start () {
 		Debug.Log("Start");
@@ -212,5 +211,51 @@ public class PlayerController : MonoBehaviour {
 		return new Quaternion(qx, qy, qz, qw);
 
     }
+	
+	//START-HAND Tracking
+	void gesture_GestureRecognized(object sender, GestureRecognizedEventArgs e){
+		Debug.Log("Algo --> "+e.Gesture);
+		if(e.Gesture=="Wave"){
+			this.hands.StartTracking(e.EndPosition);
+			Debug.Log("Tracking ");
+		}
+	}
+	
+	void hands_HandCreate(object sender, HandCreateEventArgs e){
+		Debug.Log("Create");
+		List<Point3D> lista=new List<Point3D>(trackingSize);
+		lista.Add(e.Position);
+		tracking.Add(e.UserID,lista);
+		
+	}
+	
+	void hands_HandUpdate(object sender, HandUpdateEventArgs e){
+		Debug.Log("Update");
+		List<Point3D> lista=tracking[e.UserID];
+		lista.Add(e.Position);
+		if(lista.Count>trackingSize){
+			lista.RemoveAt(0);
+		}
+	}
+	
+	void hands_HandDestroy(object sender,HandDestroyEventArgs e){
+		Debug.Log("Destroy");
+		tracking.Remove(e.UserID);
+	}
+	
+	void calcular(){
+		List<int> keys = new List<int>(tracking.Keys);
+		if(keys.Count==2){
+			
+			
+			foreach(int key in keys){
+				
+			}			
+		}else{
+			Debug.Log("No se puede mover");
+		}
+	}
+	
+	//END-HAND TRacking
 	
 }
